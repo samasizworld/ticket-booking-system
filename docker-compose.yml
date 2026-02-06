@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14.12
+    restart: unless-stopped
+    ports:
+      - "5443:5432"
+    volumes:
+      - ./postgresdata_tbs:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: tbs_user
+      POSTGRES_PASSWORD: tbs_password_123
+      POSTGRES_DB: tbs_db
+      
