@@ -158,6 +158,7 @@ export default function App() {
               setTicketType(e.target.value as TicketType)
             }
           >
+            <option value="">All</option>
             <option value="general">General</option>
             <option value="vip">VIP</option>
             <option value="front_row">Front Row</option>
