@@ -15,18 +15,47 @@ The system allows users to browse tickets, reserve multiple tickets, and simulat
 
 ---
 
-## Tech Stack
+## Code Architecture
 
-### Frontend
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-
-### Backend
-- Node.js
-- TypeScript
-- Express / NestJS-style architecture
+.
+├── Readme.md
+├── docker-compose.yml
+├── tbs-backend
+│   ├── README.md
+│   ├── eslint.config.mjs
+│   ├── nest-cli.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── src
+│   │   ├── app.controller.spec.ts
+│   │   ├── app.controller.ts
+│   │   ├── app.module.ts
+│   │   ├── app.service.ts
+│   │   ├── main.ts
+│   │   ├── migration
+│   │   └── ticket
+│   ├── test
+│   │   ├── app.e2e-spec.ts
+│   │   └── jest-e2e.json
+│   ├── tsconfig.build.json
+│   └── tsconfig.json
+└── tbs-frontend
+    ├── README.md
+    ├── eslint.config.mjs
+    ├── next-env.d.ts
+    ├── next.config.ts
+    ├── package-lock.json
+    ├── package.json
+    ├── postcss.config.mjs
+    ├── public
+    │   ├── file.svg
+    │   ├── globe.svg
+    │   ├── next.svg
+    │   ├── vercel.svg
+    │   └── window.svg
+    ├── src
+    │   └── app
+    └── tsconfig.json
 
 ### Data Store
 - PostgreSQL (transactional, row-level locking)
