@@ -66,7 +66,7 @@ This is the project folder structure for the Ticket Booking System:
   - Contains modules, controllers, services, migrations, and tests  
 - `tbs-frontend` → Next.js frontend written in TypeScript  
   - Contains pages, components, styles, and public assets  
-- `docker-compose.yml` → For running backend & frontend together easily  
+- `docker-compose.yml` → For database in docker container 
 - Node modules and build artifacts are excluded for readability  
 
 ---
