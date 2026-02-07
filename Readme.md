@@ -196,19 +196,20 @@ npm run seed
 
 
 Start backend:
-
 npm run start:dev
 
+```
 
 Backend runs at:
+http://localhost:3000 
 
-http://localhost:3000
 
-Frontend Setup
+### Frontend Setup
 cd tbs-frontend
+
+```bash
 npm install
 npm run dev
-
-
+```
 Frontend runs at:
 http://localhost:3001
