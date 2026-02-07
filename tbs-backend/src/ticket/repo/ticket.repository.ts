@@ -37,7 +37,7 @@ export class TicketRepository {
             );
             if (unavailable.length > 0) {
                 throw new BadRequestException(
-                    `Tickets not available: ${unavailable.map((t) => t.name).join(', ')}`,
+                    `The tickets you were reserving are already reserved or sold. Please book another one`,
                 );
             }
 
