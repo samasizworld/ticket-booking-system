@@ -15,47 +15,62 @@ The system allows users to browse tickets, reserve multiple tickets, and simulat
 
 ---
 
-## Code Architecture
+## 📁 Folder Structure
+
+This is the project folder structure for the Ticket Booking System:
 
 .
-├── Readme.md
+├── README.md
 ├── docker-compose.yml
 ├── tbs-backend
-│   ├── README.md
-│   ├── eslint.config.mjs
-│   ├── nest-cli.json
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── src
-│   │   ├── app.controller.spec.ts
-│   │   ├── app.controller.ts
-│   │   ├── app.module.ts
-│   │   ├── app.service.ts
-│   │   ├── main.ts
-│   │   ├── migration
-│   │   └── ticket
-│   ├── test
-│   │   ├── app.e2e-spec.ts
-│   │   └── jest-e2e.json
-│   ├── tsconfig.build.json
-│   └── tsconfig.json
+│ ├── README.md
+│ ├── eslint.config.mjs
+│ ├── nest-cli.json
+│ ├── package-lock.json
+│ ├── package.json
+│ ├── src
+│ │ ├── app.controller.spec.ts
+│ │ ├── app.controller.ts
+│ │ ├── app.module.ts
+│ │ ├── app.service.ts
+│ │ ├── main.ts
+│ │ ├── migration
+│ │ └── ticket
+│ ├── test
+│ │ ├── app.e2e-spec.ts
+│ │ └── jest-e2e.json
+│ ├── tsconfig.build.json
+│ └── tsconfig.json
 └── tbs-frontend
-    ├── README.md
-    ├── eslint.config.mjs
-    ├── next-env.d.ts
-    ├── next.config.ts
-    ├── package-lock.json
-    ├── package.json
-    ├── postcss.config.mjs
-    ├── public
-    │   ├── file.svg
-    │   ├── globe.svg
-    │   ├── next.svg
-    │   ├── vercel.svg
-    │   └── window.svg
-    ├── src
-    │   └── app
-    └── tsconfig.json
+├── README.md
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│ ├── file.svg
+│ ├── globe.svg
+│ ├── next.svg
+│ ├── vercel.svg
+│ └── window.svg
+├── src
+│ └── app
+└── tsconfig.json
+
+
+### Notes
+
+- `tbs-backend` → NestJS backend written in TypeScript  
+  - Contains modules, controllers, services, migrations, and tests  
+- `tbs-frontend` → Next.js frontend written in TypeScript  
+  - Contains pages, components, styles, and public assets  
+- `docker-compose.yml` → For running backend & frontend together easily  
+- Node modules and build artifacts are excluded for readability  
+
+---
+
 
 ### Data Store
 - PostgreSQL (transactional, row-level locking)
