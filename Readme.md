@@ -98,7 +98,7 @@ This is the project folder structure for the Ticket Booking System:
 
 ### Ticket Browsing
 - View all tickets
-- Filter by tier using tabs:
+- Filter by tier using dropdown:
   - All
   - VIP
   - Front Row
