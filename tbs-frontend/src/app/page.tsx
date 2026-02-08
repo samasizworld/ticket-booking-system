@@ -28,7 +28,7 @@ interface ReserveResponse {
 ======================= */
 
 export default function App() {
-  const [ticketType, setTicketType] = useState<TicketType>("general");
+  const [ticketType, setTicketType] = useState<TicketType | "">("");
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
   const [paymentToken, setPaymentToken] = useState<string | null>(null);
@@ -36,8 +36,8 @@ export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
-  // 👇 Reserve-modal specific error
   const [reserveError, setReserveError] = useState<string | null>(null);
+  const [showReserveModal, setShowReserveModal] = useState<boolean>(false);
 
   useEffect(() => {
     fetchTickets();
@@ -51,7 +51,7 @@ export default function App() {
     setLoading(true);
     try {
       const res = await fetch(
-        `${API_BASE}/tickets?ticketType=${ticketType}`
+        `${API_BASE}/tickets${ticketType ? `?ticketType=${ticketType}` : ""}`
       );
       const data: Ticket[] = await res.json();
       setTickets(data);
@@ -91,12 +91,12 @@ export default function App() {
       const data: ReserveResponse = await res.json();
 
       if (!res.ok) {
-        // 👇 backend error shown inside modal
         setReserveError(data.message || "Unable to reserve tickets");
         return;
       }
 
       setPaymentToken(data.paymentToken);
+      setShowReserveModal(false);
       setMessage(`Reserved ${selectedTickets.length} ticket(s).`);
     } catch {
       setReserveError("Network error. Please try again.");
@@ -143,19 +143,19 @@ export default function App() {
   ======================= */
 
   return (
-    <div className="min-h-screen bg-slate-50 p-6">
+    <div className="min-h-screen bg-slate-50 pb-24 p-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-slate-800 mb-6 text-center">
           🎟 Ticket Booking
         </h1>
 
-        {/* Ticket Type */}
+        {/* Ticket Filter */}
         <div className="flex justify-center mb-6">
           <select
             className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-700 focus:ring-2 focus:ring-indigo-500"
             value={ticketType}
             onChange={(e) =>
-              setTicketType(e.target.value as TicketType)
+              setTicketType(e.target.value as TicketType | "")
             }
           >
             <option value="">All</option>
@@ -202,7 +202,7 @@ export default function App() {
 
         {/* Toast */}
         {message && (
-          <div className="fixed bottom-5 right-5 rounded-lg bg-slate-800 px-4 py-2 text-white shadow">
+          <div className="fixed bottom-24 right-5 rounded-lg bg-slate-800 px-4 py-2 text-white shadow">
             {message}
             <button
               className="ml-3 opacity-70"
@@ -213,9 +213,31 @@ export default function App() {
           </div>
         )}
 
-        {/* Reserve Modal */}
+        {/* Sticky Bottom Bar */}
         {selectedTickets.length > 0 && !paymentToken && (
-          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+          <div className="fixed bottom-0 left-0 right-0 z-40 border-t bg-white shadow-lg">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+              <div className="text-sm text-slate-700">
+                <span className="font-semibold">
+                  {selectedTickets.length}
+                </span>{" "}
+                selected ·{" "}
+                <span className="font-semibold">${totalPrice}</span>
+              </div>
+
+              <button
+                onClick={() => setShowReserveModal(true)}
+                className="rounded-lg bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700"
+              >
+                Reserve Selected
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Reserve Modal */}
+        {showReserveModal && !paymentToken && (
+          <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center">
             <div className="w-96 rounded-xl bg-white p-6 shadow-lg">
               <h2 className="mb-3 text-xl font-semibold text-slate-800">
                 Reserve Tickets
@@ -229,12 +251,8 @@ export default function App() {
                 ))}
               </ul>
 
-              {/* 🔴 Reserve API Error */}
               {reserveError && (
-                <div
-                  role="alert"
-                  className="mb-4 rounded-lg border border-rose-300 bg-rose-50 px-4 py-2 text-sm text-rose-700"
-                >
+                <div className="mb-4 rounded-lg border border-rose-300 bg-rose-50 px-4 py-2 text-sm text-rose-700">
                   ❗ {reserveError}
                 </div>
               )}
@@ -245,13 +263,10 @@ export default function App() {
 
               <div className="flex justify-end gap-2">
                 <button
-                  onClick={() => {
-                    setSelectedTickets([]);
-                    setReserveError(null);
-                  }}
+                  onClick={() => setShowReserveModal(false)}
                   className="rounded-lg border border-slate-300 px-4 py-2 text-slate-700 hover:bg-slate-100"
                 >
-                  Cancel
+                  Back
                 </button>
                 <button
                   onClick={reserveTickets}
@@ -267,7 +282,7 @@ export default function App() {
 
         {/* Payment Modal */}
         {paymentToken && (
-          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+          <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center">
             <div className="w-96 rounded-xl bg-white p-6 shadow-lg">
               <h2 className="mb-4 text-xl font-semibold text-slate-800">
                 Confirm Payment
