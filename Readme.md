@@ -216,49 +216,47 @@ POST /tickets/confirm-payment
 
 ---
 
-## Running the Project Locally
+# Running the Project Locally
 
 docker compose up -d
 
-### Backend Setup
-
+## Backend Setup
 ```bash
 cd tbs-backend
 npm install
 ```
 
-## Create a .env.local file:
+#### Create a .env.local file:
 ```bash
 DB_URL=postgresql://tbs_user:tbs_password_123@localhost:5443/tbs_db
 ```
 
-## Run migrations / seed data (example):
+#### Run migrations / seed data (example):
 ```bash
 npm run migration:generate
 npm run migration:run
 npm run seed
 ```
 
-## Start backend:
+#### Start backend:
 ```bash
 npm run start:dev
 ```
 
-## Backend runs at:
+#### Backend runs at:
 ```bash
  http://localhost:3000 
  ```
 
 
-### Frontend Setup
-
+## Frontend Setup
 ```bash
 cd tbs-frontend
 npm install
 npm run dev
 ```
 
-## Frontend runs at:
+#### Frontend runs at:
 ```bash
  http://localhost:3001 
  ```
