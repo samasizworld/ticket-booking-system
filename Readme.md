@@ -19,6 +19,7 @@ The system allows users to browse tickets, reserve multiple tickets, and simulat
 
 This is the project folder structure for the Ticket Booking System:
 
+```
 .
 ├── README.md
 ├── docker-compose.yml
@@ -59,6 +60,7 @@ This is the project folder structure for the Ticket Booking System:
 │ └── app
 └── tsconfig.json
 
+```
 
 ### Notes
 
