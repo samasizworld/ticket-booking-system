@@ -2,11 +2,10 @@
 
 ## Overview
 
-This repository contains an end-to-end **concert ticket booking system** built as part of a take-home assignment.
+This repository contains an end-to-end **ticket booking system** built as part of a take-home assignment.
 
 The goal of this project is to demonstrate:
 - Correctness under concurrency
-- Clear technical decision-making
 - Scalable system design thinking
 - Clean, readable TypeScript code
 - A simple but usable UI
@@ -84,7 +83,7 @@ This is the project folder structure for the Ticket Booking System:
 
 ---
 
-## Functional Requirements (Implemented)
+## Functional Requirements
 
 ### Ticket Catalog & Pricing
 | Tier | Price |
@@ -131,7 +130,7 @@ This is the project folder structure for the Ticket Booking System:
 
 ---
 
-## Non-Functional Requirements (Design Intent)
+## Non-Functional Requirements
 
 > The following are **design discussions**, not fully implemented infrastructure.
 
@@ -143,7 +142,6 @@ To achieve four-nines availability in production:
 - PostgreSQL in multi-AZ setup with automatic failover
 - Read replicas for ticket browsing
 - Health checks + autoscaling
-- Graceful degradation (read-only mode if writes fail)
 
 ---
 
