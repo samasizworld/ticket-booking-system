@@ -225,35 +225,40 @@ docker compose up -d
 ```bash
 cd tbs-backend
 npm install
+```
 
-
-Create a .env.local file:
-
+## Create a .env.local file:
+```bash
 DB_URL=postgresql://tbs_user:tbs_password_123@localhost:5443/tbs_db
+```
 
-
-Run migrations / seed data (example):
-
+## Run migrations / seed data (example):
+```bash
 npm run migration:generate
 npm run migration:run
 npm run seed
-
-
-Start backend:
-npm run start:dev
-
 ```
 
-Backend runs at:
-http://localhost:3000 
+## Start backend:
+```bash
+npm run start:dev
+```
+
+## Backend runs at:
+```bash
+ http://localhost:3000 
+ ```
 
 
 ### Frontend Setup
-cd tbs-frontend
 
 ```bash
+cd tbs-frontend
 npm install
 npm run dev
 ```
-Frontend runs at:
-http://localhost:3001
+
+## Frontend runs at:
+```bash
+ http://localhost:3001 
+ ```
